@@ -25,7 +25,7 @@ class PersonListFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(logTag, "Total people: ${myViewModel.people.size}")
+        Log.d(LOG_TAG, "Total people: ${myViewModel.people.size}")
     }
 
     override fun onCreateView(
@@ -34,16 +34,16 @@ class PersonListFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_person_list, container, false)
-        personRecyclerView = view.findViewById(R.id.person_recycler_view) as RecyclerView
-        personRecyclerView.layoutManager = LinearLayoutManager(context)
-        updateUI()
+        this.personRecyclerView = view.findViewById(R.id.person_recycler_view) as RecyclerView
+        this.personRecyclerView.layoutManager = LinearLayoutManager(context)
+        this.updateUI()
         return view
     }
 
     private inner class PersonHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameTextView: TextView = this.itemView.findViewById(R.id.list_item_person_name)
         val ageTextView: TextView = this.itemView.findViewById(R.id.list_item_person_age)
-        val studentView: CheckBox = this.itemView.findViewById(R.id.list_item_person_student)
+        val studentCheck: CheckBox = this.itemView.findViewById(R.id.list_item_person_student)
     }
 
     private inner class PersonAdapter(var people: List<Person>) : RecyclerView.Adapter<PersonHolder>() {
@@ -55,11 +55,11 @@ class PersonListFragment: Fragment() {
         override fun getItemCount() = people.size
 
         override fun onBindViewHolder(holder: PersonHolder, position: Int) {
-            val person = people[position]
+            val person = this.people[position]
             holder.apply {
                 nameTextView.text = person.name
                 ageTextView.text = person.age.toString()
-                studentView.isChecked = person.isStudent
+                studentCheck.isChecked = person.isStudent
             }
         }
 
