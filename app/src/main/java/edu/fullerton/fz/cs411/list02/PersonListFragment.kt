@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.Switch
 import android.widget.TextView
 import androidx.appcompat.widget.SwitchCompat
@@ -42,12 +43,12 @@ class PersonListFragment: Fragment() {
     private inner class PersonHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameTextView: TextView = this.itemView.findViewById(R.id.list_item_person_name)
         val ageTextView: TextView = this.itemView.findViewById(R.id.list_item_person_age)
-        val studentView: SwitchCompat = this.itemView.findViewById(R.id.list_item_person_student)
+        val studentView: CheckBox = this.itemView.findViewById(R.id.list_item_person_student)
     }
 
     private inner class PersonAdapter(var people: List<Person>) : RecyclerView.Adapter<PersonHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonHolder {
-            val view = layoutInflater.inflate(R.id.list_item_person, parent, false)
+            val view = layoutInflater.inflate(R.layout.list_item_person, parent, false)
             return PersonHolder(view)
         }
 
